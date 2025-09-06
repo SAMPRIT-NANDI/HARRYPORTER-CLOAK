@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invisibility Cloak Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+            color: #222;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            padding: 32px 0 0 0;
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.96);
+            z-index: 10;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 600;
+            font-size: 1.08em;
+            padding: 10px 28px;
+            border-radius: 16px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .navbar a.active, .navbar a:hover {
+            background: #222;
+            color: #fff;
+        }
+        .hero {
+            text-align: center;
+            margin-top: 80px;
+        }
+        .hero h1 {
+            font-size: 3.2em;
+            font-weight: 800;
+            margin-bottom: 18px;
+            letter-spacing: -2px;
+            color: #222;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+        .hero p {
+            font-size: 1.25em;
+            color: #444;
+            margin-bottom: 38px;
+            font-weight: 400;
+        }
+        .cloak-btn {
+            font-size: 1.18em;
+            font-weight: 600;
+            padding: 16px 48px;
+            border-radius: 18px;
+            background: linear-gradient(90deg, #7b1fa2 60%, #e040fb 100%);
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 24px rgba(123,31,162,0.10);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+        .cloak-btn:hover {
+            background: linear-gradient(90deg, #e040fb 60%, #7b1fa2 100%);
+            transform: scale(1.04);
+            box-shadow: 0 8px 32px rgba(123,31,162,0.18);
+        }
+        .screenshots {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin: 60px 0 0 0;
+            flex-wrap: wrap;
+        }
+        .screenshot {
+            background: #f7f7fa;
+            border-radius: 28px;
+            box-shadow: 0 2px 16px rgba(123,31,162,0.07);
+            width: 220px;
+            height: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: 1.1em;
+            color: #888;
+            font-weight: 600;
+            letter-spacing: 1px;
+            overflow: hidden;
+            padding-top: 18px;
+        }
+        .screenshot img {
+            width: 90%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 18px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(123,31,162,0.08);
+        }
+        .screenshot-label {
+            text-align: center;
+            font-size: 1.08em;
+            color: #444;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+        @media (max-width: 900px) {
+            .screenshots { gap: 16px; }
+            .screenshot { width: 140px; height: 260px; font-size: 0.9em;}
+            .screenshot img { height: 120px; }
+            .hero h1 { font-size: 2em; }
+            .cloak-btn { font-size: 1em; padding: 12px 30px; }
+            .navbar a { font-size: 1em; padding: 8px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}" class="active">Home</a>
+        <a href="{{ url_for('about') }}">About Us</a>
+        {% if session.get('username') %}
+            <a href="{{ url_for('invisible') }}">Invisible Cloak</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('signup') }}">Signup</a>
+        {% endif %}
+    </nav>
+    <section class="hero">
+        <h1>Welcome to the Invisibility Cloak Website!</h1>
+        <p>Experience the magic of invisibility.<br>
+        Click below to try the Harry Potter-style cloak effect!</p>
+        <a href="{{ url_for('cloak') }}">
+            <button class="cloak-btn">Invisibility Cloak</button>
+        </a>
+    </section>
+    <section class="screenshots">
+        <div class="screenshot">
+            <img src="https://cdn.mos.cms.futurecdn.net/Y4e2XVEoX3Bhz7kPf2FZMF.jpg" alt="Welcome">
+            <div class="screenshot-label"></div>
+        </div>
+        <div class="screenshot">
+            <img src="https://fwmedia.fandomwire.com/wp-content/uploads/2024/08/09064537/harry-potter-5-4.jpg" alt="Account Setup">
+            <div class="screenshot-label"></div>
+        </div>
+        <div class="screenshot">
+            <img src="https://ew.com/thmb/RDYTEbiHqUz5oNL_Wvgk5c8hkI0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/hermione-harry_240_1-cbb2d8cb1c6e424ba8d915402671286e.jpg" alt="Home">
+            <div class="screenshot-label"></div>
+        </div>
+        <div class="screenshot">
+            <img src="https://static0.cbrimages.com/wordpress/wp-content/uploads/2024/05/luna-harry-ron-and-hermione.jpg" alt="Subscription">
+            <div class="screenshot-label"></div>
+        </div>
+        <div class="screenshot">
+            <img src="https://static0.moviewebimages.com/wordpress/wp-content/uploads/2022/12/harry-potter-dobby.jpeg" alt="Login">
+            <div class="screenshot-label"></div>
+        </div>
+    </section>
+</body>
+</html>

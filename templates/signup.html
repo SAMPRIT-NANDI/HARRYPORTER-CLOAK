@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup - Invisibility Cloak</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, #7b1fa2 0%, #e040fb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            display: flex;
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(123,31,162,0.18);
+            overflow: hidden;
+            width: 700px;
+            max-width: 98vw;
+        }
+        .welcome {
+            background: linear-gradient(135deg, #7b1fa2 0%, #e040fb 100%);
+            color: #fff;
+            width: 45%;
+            padding: 48px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+        .welcome .logo {
+            font-size: 2em;
+            font-weight: 800;
+            margin-bottom: 32px;
+            letter-spacing: 2px;
+        }
+        .welcome h2 {
+            font-size: 2em;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .welcome p {
+            font-size: 1.1em;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+        .welcome .site {
+            position: absolute;
+            bottom: 24px;
+            left: 32px;
+            font-size: 1em;
+            opacity: 0.7;
+        }
+        .signup-form {
+            width: 55%;
+            padding: 48px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background: #fff;
+        }
+        .signup-form h2 {
+            font-size: 1.6em;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #222;
+        }
+        .signup-form form {
+            width: 100%;
+        }
+        .signup-form input[type="text"],
+        .signup-form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            font-size: 1em;
+            background: #f7f7fa;
+            transition: border 0.2s;
+        }
+        .signup-form input:focus {
+            border: 1.5px solid #ab2187;
+            outline: none;
+        }
+        .signup-form button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(90deg, #7b1fa2 60%, #e040fb 100%);
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 18px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .signup-form button:hover {
+            background: linear-gradient(90deg, #e040fb 60%, #7b1fa2 100%);
+            transform: scale(1.03);
+        }
+        .social-login {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .social-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+        .twitter {
+            background: linear-gradient(90deg, #1da1f2 60%, #0e71c8 100%);
+            color: #fff;
+        }
+        .facebook {
+            background: linear-gradient(90deg, #1877f2 60%, #4267b2 100%);
+            color: #fff;
+        }
+        .social-btn:hover {
+            opacity: 0.9;
+        }
+        @media (max-width: 700px) {
+            .container { flex-direction: column; width: 98vw;}
+            .welcome, .signup-form { width: 100%; padding: 32px 16px;}
+            .welcome .site { position: static; margin-top: 24px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome">
+            <div class="logo">🪄 Invisibility Cloak</div>
+            <h2>Welcome Page</h2>
+            <p>Sign up to continue access</p>
+            <div class="site">www.yoursite.com</div>
+        </div>
+        <div class="signup-form">
+            <h2>Sign Up</h2>
+            {% if error %}
+                <p style="color:red;">{{ error }}</p>
+            {% endif %}
+            <form method="POST">
+                <input type="text" name="username" placeholder="Email Address" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Continue</button>
+            </form>
+            <div style="width:100%;text-align:center;color:#aaa;font-size:0.98em;margin:10px 0 12px 0;">or Connect with Social Media</div>
+            <div class="social-login">
+              <button class="social-btn facebook"><span>📘</span> Sign Up With Facebook</button>
+              <!-- ...existing code... -->
+<div style="width:100%;text-align:center;color:#aaa;font-size:0.98em;margin:10px 0 12px 0;">or Connect with Social Media</div>
+<div class="social-login">
+    <button class="social-btn twitter"><span>🐦</span> Sign In With Twitter</button>
+    <button class="social-btn facebook"><span>📘</span> Sign In With Facebook</button>
+</div>
+<!-- ...existing code... -->
+<div style="width:100%;text-align:center;color:#aaa;font-size:0.98em;margin:10px 0 12px 0;">or Connect with Social Media</div>
+<div class="social-login">
+    <button class="social-btn twitter"><span>🐦</span> Sign Up With Twitter</button>
+    <button class="social-btn facebook"><span>📘</span> Sign Up With Facebook</button>
+</div>
+<div style="width:100%;text-align:center;margin-top:18px;">
+    <span style="color:#444;">Already have an account?</span>
+    <a href="{{ url_for('login') }}" style="color:#7b1fa2;font-weight:600;text-decoration:none;">Login</a>
+</div>
+<!-- ...existing code... -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

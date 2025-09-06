@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Invisibility Cloak</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About Us</a>
+        <a href="{{ url_for('signup') }}">Signup</a>
+    </nav>
+    <h1>Login</h1>
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST">
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <button type="submit">Login</button>
+        <!-- ...existing code... -->
+<div style="width:100%;text-align:center;color:#aaa;font-size:0.98em;margin:10px 0 12px 0;">or Connect with Social Media</div>
+<div class="social-login">
+    <button class="social-btn twitter"><span>🐦</span> Sign In With Twitter</button>
+    <button class="social-btn facebook"><span>📘</span> Sign In With Facebook</button>
+</div>
+<div style="width:100%;text-align:center;margin-top:18px;">
+    <span style="color:#444;">Don't have an account?</span>
+    <a href="{{ url_for('signup') }}" style="color:#7b1fa2;font-weight:600;text-decoration:none;">Sign Up</a>
+</div>
+<!-- ...existing code... -->
+    </form>
+</body>
+</html>

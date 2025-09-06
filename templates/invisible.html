@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invisible Cloak Camera</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function capturePhoto() {
+            var video = document.getElementById('video');
+            var canvas = document.getElementById('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            canvas.toBlob(function(blob) {
+                var formData = new FormData();
+                formData.append('photo', blob, 'photo.jpg');
+                fetch('/invisible', {method: 'POST', body: formData})
+                    .then(response => response.blob())
+                    .then(blob => {
+                        var url = URL.createObjectURL(blob);
+                        document.getElementById('result').src = url;
+                    });
+            }, 'image/jpeg');
+        }
+        window.onload = function() {
+            var video = document.getElementById('video');
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function(stream) {
+                        video.srcObject = stream;
+                        video.play();
+                    })
+                    .catch(function(err) {
+                        alert('Camera access denied or not available: ' + err.name);
+                    });
+            } else {
+                alert('getUserMedia not supported in this browser.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About Us</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+    <h1>Invisible Cloak Camera</h1>
+    <video id="video" autoplay playsinline style="width:60%;max-width:500px;"></video>
+    <br>
+    <button onclick="capturePhoto()">Capture & Make Invisible</button>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <br>
+    <img id="result" alt="Result will appear here" style="margin-top:20px;max-width:80%;">
+</body>
+</html>
